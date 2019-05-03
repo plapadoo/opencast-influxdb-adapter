@@ -92,6 +92,10 @@ Opencast External API login credentials, password.
 
 Set this to true if every episode must have a series assigned to it in your Opencast setup. In this case, a missing series is considered (and logged as) an error. Otherwise, it's just a normal data point.
 
+    opencast.external-api.cache-expiration-duration=PT0M
+
+The adapter has an optional cache included that stores event metadata for faster retrieval. It’s evicted time-based, and you can control the time after a cache entry has been *written* that it is evicted again. Note that the special value `PT0M` (or any duration that equates to zero) disables the cache.
+
 ## Sliding Window Mechanism ##
 
 The adapter doesn’t simply count one line of the log file as one “view” and pushes it into InfluxDB. Rather, when it keeps a cache of “current views”, which is initially empty. When it encounters a new log line, it does the following…

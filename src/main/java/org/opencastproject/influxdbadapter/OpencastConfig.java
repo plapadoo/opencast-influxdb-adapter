@@ -21,6 +21,8 @@
 
 package org.opencastproject.influxdbadapter;
 
+import java.time.Duration;
+
 /**
  * Represents all fields for Opencast's External API configuration (immutable)
  */
@@ -29,12 +31,19 @@ public final class OpencastConfig {
   private final String user;
   private final String password;
   private final boolean seriesAreOptional;
+  private final Duration cacheExpirationDuration;
 
-  public OpencastConfig(final String uri, final String user, final String password, final boolean seriesAreOptional) {
+  public OpencastConfig(
+          final String uri,
+          final String user,
+          final String password,
+          final boolean seriesAreOptional,
+          final Duration cacheExpirationDuration) {
     this.uri = uri;
     this.user = user;
     this.password = password;
     this.seriesAreOptional = seriesAreOptional;
+    this.cacheExpirationDuration = cacheExpirationDuration;
   }
 
   public String getUri() {
@@ -51,5 +60,9 @@ public final class OpencastConfig {
 
   public boolean isSeriesAreOptional() {
     return this.seriesAreOptional;
+  }
+
+  public Duration getCacheExpirationDuration() {
+    return this.cacheExpirationDuration;
   }
 }
